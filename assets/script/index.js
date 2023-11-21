@@ -1,5 +1,6 @@
 'use strict';
 
+
 /*-------------------------------------------------------*/
 /*  Utility functions                                    */
 /*-------------------------------------------------------*/
@@ -34,15 +35,17 @@ let showAlarmHour = selectById('set-alarm-hour');
 let showAlarmMinutes = selectById('set-alarm-minutes');
 let showAlarmSimbol = selectById('set-alarm-simbol');
 
+let invalidInputStyle = selectById('invalid-input');
+
 let bellIcon = selectById('bell');
 
 let validHour = false;
 let validMinutes = false;
 
-let audioWin = new Audio('./assets/audio/mixkit-casino-bling-achievement-2067.wav');
-let audioStart = new Audio('./assets/audio/mixkit-completion-of-a-level-2063.wav');
-
 let dateAlarm = new Date();
+
+//Creating HTML audio element 
+let audioAlarm = selectById('my-audio-alarm');
 
 /*--------------------------------------------------------------------------------*/
 /* Function: Getting and showin the hour
@@ -59,23 +62,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById('hours').textContent = hours;
         document.getElementById('minutes').textContent = minutes;
+
+    }
+
+    function checkingAlarm() {
+        // Check if the user-set alarm hour matches the current hour
+        const now = new Date(); // Move this line inside the function
+
+        if (validHour && validMinutes && now.getHours() === dateAlarm.getHours() && now.getMinutes() === dateAlarm.getMinutes()) {
+            playSound();
+        }
     }
 
     // Uddate hora and minutes in one seconds 
     setInterval(updateClock, 1000);
+    setInterval(checkingAlarm, 1000);
 
     updateClock();
+    checkingAlarm();
 
-
-    audioWin.preload = 'auto';
-    audioStart.preload = 'auto';
-
-    // Check if the user-set alarm hour matches the current hour
-    if (validHour && validMinutes && now.getHours() === dateAlarm.getHours() && now.getMinutes() === dateAlarm.getMinutes()) {
-        playSoundWin();
-        applyWinEffect();
-    }
 });
+
 
 /*-------------------------------------------------------*/
 /*  Function: Valide pattern                            */
@@ -97,13 +104,12 @@ function isValidHour(cleanHour) {
     // Validating two numbers digits 
 
     if (validatingPattern(cleanHour)) {
-        validHour = true;
         let parssedHour = parseInt(cleanHour, 10);
 
         // Checking if parsing was successful
-        if (isNaN(parssedHour)) {
+        if (isNaN(parssedHour) || parssedHour < 0 || parssedHour > 23) {
             validHour = false;
-        } else if (parssedHour >= 0 && parssedHour <= 23) {
+        } else {
             // Validating hours from 0 to 23 
             validHour = true;
         }
@@ -115,13 +121,12 @@ function isValidHour(cleanHour) {
 /*-------------------------------------------------------*/
 function isValidMinutes(cleanMinutes) {
     if (validatingPattern(cleanMinutes)) {
-
         let parssedMinutes = parseInt(cleanMinutes, 10);
 
         // Checking if parsing was successful
-        if (isNaN(parssedMinutes)) {
+        if (isNaN(parssedMinutes) || parssedMinutes < 0 || parssedMinutes > 59) {
             validMinutes = false;
-        } else if (parssedMinutes >= 0 && parssedMinutes <= 59) {
+        } else {
             validMinutes = true;
         }
     }
@@ -140,11 +145,11 @@ onEvent('click', setAlarm, function (e) {
     isValidMinutes(cleanMinutes);
 
     if (!validHour) {
-        //Ad hover to inputHour
+        hourInput.value = '';
     }
 
     if (!validMinutes) {
-        //Ad hover to inputMinute
+        minutesInput.value = '';
     }
 
     if (validHour && validMinutes) {
@@ -152,7 +157,6 @@ onEvent('click', setAlarm, function (e) {
         let paddedMinutes = cleanMinutes.toString().padStart(2, '0');
 
         dateAlarm.setHours(paddedHour, paddedMinutes, 0);
-        console.log(dateAlarm);
 
         bellIcon.style.display = 'block';
         showAlarmHour.textContent = dateAlarm.getHours();
@@ -162,10 +166,6 @@ onEvent('click', setAlarm, function (e) {
         showAlarmHour.style.display = 'block';
         showAlarmMinutes.style.display = 'block';
         showAlarmSimbol.style.display = 'block';
-
-        //element.style.display = 'none';
-
-        console.log(`Ready to go ${dateAlarm}`);
     }
 });
 
@@ -174,24 +174,49 @@ onEvent('click', setAlarm, function (e) {
 /*  Function: Sounds                                        */
 /*----------------------------------------------------------*/
 
+audioAlarm.volume = 0.5;
+
 // Function to play the audio
-function playSoundWin() {
-    audioWin.play();
+function playSound() {
+    audioAlarm.play();
+
+    setTimeout(function () {
+        stopSound();
+    }, 5000);
+
 }
 
-function playSoundStart() {
-    audioStart.play();
+function stopSound() {
+    audioAlarm.pause();
+    audioAlarm.currentTime = 0; // Reset the audio to the beginning
+    reset();
 }
 
+/*-------------------------------------------------------*/
+/*  Function: Valide pattern                            */
+/*-------------------------------------------------------*/
+function reset() {
+    // Reset input fields
+    dateAlarm.setHours(0, 0, 0);
 
-// Function to apply the win effect
-function applyWinEffect() {
-    document.body.classList.add('win-effect');
+    hourInput.value = '';
+    minutesInput.value = '';
+
+    // Reset alarm display elements
+    showAlarmHour.textContent = '';
+    showAlarmMinutes.textContent = '';
+    showAlarmSimbol.textContent = '';
+
+    // Hide the bell icon
+    bellIcon.style.display = 'none';
+    showAlarmHour.style.display = 'none';
+    showAlarmMinutes.style.display = 'none';
+    showAlarmSimbol.style.display = 'none';
+
+    // Clear the dateAlarm object
+    dateAlarm = new Date();
+
+    // Reset validation flags
+    validHour = false;
+    validMinutes = false;
 }
-
-// Function to remove the win effect
-function removeWinEffect() {
-    document.body.classList.remove('win-effect');
-}
-
-
