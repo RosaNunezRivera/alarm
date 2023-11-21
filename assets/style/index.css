@@ -1,0 +1,176 @@
+@import "./reset.css";
+
+:root {
+    /*Global variable*/
+    --app-dark-bg: #282828;
+    --app-lessdark-bg: #3f3f3f;
+    --app-morelessdark-bg: #4c4b4b;
+    --app-ligh-text: #f0ffff;
+    --app-primarybotton-color: #7830a8;
+    --app-primarybotton-hover-color: #53296f;
+}
+
+body {
+    background-color: var(--app-dark-bg);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*                    Containers                         */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.container {
+    width: min(100% - 30px, 1080px);
+    height: 100dvh;
+    margin-inline: auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*                     Main                              */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.container-content {
+    width: 50%;
+    height: fit-content;
+}
+
+.show-hour-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+}
+
+.clock-display {
+    font-size: 60px;
+    /* Adjust the font size as needed */
+    color: #fff;
+    /* Adjust the color as needed */
+}
+
+#hours #minutes {
+    line-height: 50px;
+    font-size: 90px;
+    font-weight: 400;
+    margin: 30px 0px 30px 0px;
+    color: var(--app-ligh-text);
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*                   Show Setted Alarm                   */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.show-set-alarm {
+    width: 500px;
+    height: 50px;
+    margin: 30px 0px 30px 0px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.alarm-displ {
+    font-size: 60px;
+    /* Adjust the font size as needed */
+    color: #fff;
+    /* Adjust the color as needed */
+}
+
+#set-alarm-hour #set-alarm-minutes {
+    line-height: 50px;
+    font-size: 90px;
+    font-weight: 400;
+    margin: 30px 0px 30px 0px;
+    color: var(--app-ligh-text);
+}
+
+.set-alarm-user {
+    line-height: 50px;
+    font-size: 25px;
+    font-weight: 100;
+    margin: 30px 0px 30px 0px;
+    color: var(--app-ligh-text);
+}
+
+#bell {
+    margin-right: 20px;
+    line-height: 50px;
+    font-size: 25px;
+    font-weight: 100;
+    margin: 30px 0px 30px 0px;
+    color: var(--app-ligh-text);
+    color: rgb(205, 33, 148);
+    display: none;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*                   Form                                */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.clock {
+    width: 500px;
+}
+
+input[type="text"] {
+    width: 20%;
+    height: 50px;
+    margin: 20px 10px 20px 0px;
+    color: var(--app-ligh-text);
+    background-color: var(--app-lessdark-bg);
+    border: 1px solid var(--app-morelessdark-bg);
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0.2px;
+    transition: all 0.25s ease-in-out;
+    cursor: auto;
+}
+
+input:focus {
+    border: 1px solid #7830a8;
+}
+
+input::placeholder {
+    color: var(--app-ligh-text);
+}
+
+.input-invalid {
+    border: 1px solid #ff3300;
+}
+
+input[type="button"] {
+    width: 30%;
+    height: 50px;
+    margin: 20px 0px 20px 0px;
+    text-align: center;
+    background-color: var(--app-primarybotton-color);
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: all 0.25s ease-in-out;
+    color: var(--app-ligh-text);
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: var(--app-primarybotton-hover-color);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*                   Sound                               */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #282828;
+    font-family: 'Cousine', monospace;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    /*outline: 2px dashed rgb(205, 33, 148);*/
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Rosa Nunez">
+    <meta name="description" content="Rosa Nunez o Web Developer">
+    <meta name="keywords" content="web developer, web, developer, front-end,html, CSS, JavaScript">
+    <title>Alarm Clock | Rosa Nunez </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cousine:ital@0;1&family=Open+Sans&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" href="./assets/img/faviconrosa.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/style/index.css" media="all">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="./assets/script/index.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <header>
+        </header>
+        <div class="container flex">
+            <div class="container-content flex">
+                <section class="show-hour-section">
+                    <p class="show-hour clock-display" id="hours">00</p>
+                    <p class="show-hour clock-display"> : </p>
+                    <p class="show-hour clock-display" id="minutes">00</p>
+                </section>
+
+                <div class="show-set-alarm">
+                    <i class="fa-sharp fa-solid fa-bell" id="bell"></i>
+                    <p class="set-alarm-user  alarm-display" id="set-alarm-hour"></p>
+                    <p class="set-alarm-user  alarm-display" id="set-alarm-simbol"></p>
+                    <p class="set-alarm-user  alarm-display" id="set-alarm-minutes"></p>
+
+                </div>
+
+                <form class="clock">
+                    <input type="text" class="hour" placeholder="HH" maxlength="2">
+                    <input type="text" class="minutes" placeholder="MM" maxlength="2">
+                    <input type="button" class="set-alarm-button" value="Set Alarm">
+                </form>
+
+            </div>
+        </div>
+    </main>
+    <noscript>
+        <p> This page requieres a JavaScript-enable browser</p>
+        </nocript>
+        <footer>
+        </footer>
+</body>
+
+</html>
